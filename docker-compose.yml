@@ -1,0 +1,44 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres
+    container_name: ${ENV}-music-db
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - TZ=Asia/Taipei
+      - PGTZ=Asia/Taipei
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - ${DATABASE_PORT}:5432
+    volumes:
+      - ./${ENV}_db:/var/lib/postgresql/data
+    networks:
+      - music-backend
+#   api:
+#     build: .
+#     container_name: ${ENV}-sonicstride-api
+#     restart: always
+#     env_file:
+#       - .env
+#     environment:
+#       - TZ=Asia/Taipei
+#     ports:
+#       - ${API_PORT}:443
+#     volumes:
+#       - ./app:/app
+#       - ./logs:/logs
+#     depends_on:
+#       - db
+#     networks:
+#       - music-backend
+
+networks:
+  music-backend:
+    driver: bridge
+    ipam:
+      driver: default

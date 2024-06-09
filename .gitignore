@@ -1,0 +1,7 @@
+# settings
+.vscode
+.DS_Store
+
+# local data
+logs
+test_db
