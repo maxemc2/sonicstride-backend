@@ -1,7 +1,7 @@
-FROM --platform=linux/amd64 python:3.9-slim
-# FROM python:3.9-slim
+# FROM --platform=linux/amd64 python:3.9-slim
+FROM python:3.9-slim
 
-# 更新包列表并安装必要的依赖
+# Update package lists and install necessary dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     libssl-dev \
@@ -9,22 +9,23 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# 安装 pip 和 pipenv
-RUN pip install --no-cache-dir pipenv
+# Install pip and pipenv
+RUN pip install pipenv
 
-# 复制 Pipfile 和 Pipfile.lock 并安装依赖
+# Copy Pipfile and Pipfile.lock and install dependencies
 COPY Pipfile Pipfile
 COPY Pipfile.lock Pipfile.lock
-RUN pipenv install --deploy --ignore-pipfile
+RUN pipenv install
 
-# 复制应用程序代码
+# Copy application code
 COPY ./app /app
 
-# 设置工作目录
+# Set working directory
 WORKDIR /app
 
-# 暴露应用程序端口
+# Expose application port
 EXPOSE 443
 
-# 启动命令
+# Startup command
 CMD ["pipenv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "443"]
+# CMD ["pipenv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "443", "--ssl-keyfile", "/etc/ssl/private/nginx-selfsigned.key", "--ssl-certfile", "/etc/ssl/certs/nginx-selfsigned.crt"]

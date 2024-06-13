@@ -5,3 +5,4 @@
 # local data
 logs
 test_db
+*.env

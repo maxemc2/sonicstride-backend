@@ -1,41 +1,44 @@
 version: "3.3"
 
 services:
-  db:
-    image: postgres
-    container_name: ${ENV}-music-db
+  # db:
+  #   image: postgres:15
+  #   container_name: ${ENV}-music-db
+  #   restart: always
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - TZ=Asia/Taipei
+  #     - PGTZ=Asia/Taipei
+  #     - POSTGRES_DB=${DATABASE_NAME}
+  #     - POSTGRES_USER=${DATABASE_USER}
+  #     - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+  #   ports:
+  #     - ${DATABASE_PORT}:5432
+  #   volumes:
+  #     - ./${ENV}_db:/var/lib/postgresql/data
+  #   networks:
+  #     - music-backend
+  api:
+    build: .
+    container_name: ${ENV}-sonicstride-api
     restart: always
     env_file:
       - .env
     environment:
       - TZ=Asia/Taipei
-      - PGTZ=Asia/Taipei
-      - POSTGRES_DB=${DATABASE_NAME}
-      - POSTGRES_USER=${DATABASE_USER}
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
     ports:
-      - ${DATABASE_PORT}:5432
+      - ${API_PORT}:443
     volumes:
-      - ./${ENV}_db:/var/lib/postgresql/data
+      # - ./app:/app
+      - ./logs:/logs
+      # - .env:/.env
+      - /etc/ssl/certs/nginx-selfsigned.crt:/etc/ssl/certs/nginx-selfsigned.crt:ro
+      - /etc/ssl/private/nginx-selfsigned.key:/etc/ssl/private/nginx-selfsigned.key:ro
+    # depends_on:
+    #   - db
     networks:
       - music-backend
-#   api:
-#     build: .
-#     container_name: ${ENV}-sonicstride-api
-#     restart: always
-#     env_file:
-#       - .env
-#     environment:
-#       - TZ=Asia/Taipei
-#     ports:
-#       - ${API_PORT}:443
-#     volumes:
-#       - ./app:/app
-#       - ./logs:/logs
-#     depends_on:
-#       - db
-#     networks:
-#       - music-backend
 
 networks:
   music-backend:
