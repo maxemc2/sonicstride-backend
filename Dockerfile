@@ -29,3 +29,4 @@ EXPOSE 443
 # Startup command
 CMD ["pipenv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "443"]
 # CMD ["pipenv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "443", "--ssl-keyfile", "/etc/ssl/private/nginx-selfsigned.key", "--ssl-certfile", "/etc/ssl/certs/nginx-selfsigned.crt"]
+# CMD ["pipenv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "443", "--ssl-keyfile", "/etc/ssl/private/www_sonicstride_app.key", "--ssl-certfile", "/etc/ssl/certs/www_sonicstride_app.crt"]
