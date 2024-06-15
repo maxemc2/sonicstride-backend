@@ -1,8 +1,59 @@
-# settings
+# Settings
 .vscode
 .DS_Store
 
-# local data
+# Local data
 logs
 test_db
 *.env
+*.crt
+*.key
+
+# Ignore database data files
+*_db
+
+# Ignore application temporary files and log files
+*.log
+
+# Ignore Docker Compose generated files
+docker-compose.override.yml
+docker-compose*.log
+docker-compose*.bak
+
+# Ignore Node.js dependencies
+node_modules/
+npm-debug.log
+
+# Ignore Python virtual environment files
+venv/
+__pycache__/
+*.py[cod]
+
+# Ignore operating system generated files
+Thumbs.db
+
+# Ignore SSL certificate files (add manually if needed)
+/etc/ssl/certs/nginx-selfsigned.crt
+/etc/ssl/private/nginx-selfsigned.key
+/etc/ssl/certs/www_sonicstride_app.crt
+/etc/ssl/private/www_sonicstride_app.key
+
+# Ignore compiled files
+/dist/
+/build/
+/target/
+
+# Ignore IDE and editor configuration files
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Other unnecessary files and folders
+tmp/
+*.tmp
+*.bak
+*.old
+*.orig
