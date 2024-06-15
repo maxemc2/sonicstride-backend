@@ -28,7 +28,7 @@ services:
     environment:
       - TZ=Asia/Taipei
     ports:
-      - ${API_PORT}:443
+      - ${API_PORT}:80
     volumes:
       # - ./app:/app
       - ./logs:/logs
@@ -36,7 +36,7 @@ services:
       # - /etc/ssl/certs/nginx-selfsigned.crt:/etc/ssl/certs/nginx-selfsigned.crt:ro
       # - /etc/ssl/private/nginx-selfsigned.key:/etc/ssl/private/nginx-selfsigned.key:ro
       - /etc/ssl/certs/www_sonicstride_app.crt:/etc/ssl/certs/www_sonicstride_app.crt:ro
-      - /etc/ssl/private/www_sonicstride_app.key:/etc/ssl/private/www_sonicstride_app.key:ro      
+      - /etc/ssl/private/www_sonicstride_app.key:/etc/ssl/private/www_sonicstride_app.key:ro
     # depends_on:
     #   - db
     networks:
@@ -51,8 +51,9 @@ services:
       # - /etc/ssl/certs/nginx-selfsigned.crt:/etc/ssl/certs/nginx-selfsigned.crt:ro
       # - /etc/ssl/private/nginx-selfsigned.key:/etc/ssl/private/nginx-selfsigned.key:ro
       - /etc/ssl/certs/www_sonicstride_app.crt:/etc/ssl/certs/www_sonicstride_app.crt:ro
-      - /etc/ssl/private/www_sonicstride_app.key:/etc/ssl/private/www_sonicstride_app.key:ro  
+      - /etc/ssl/private/www_sonicstride_app.key:/etc/ssl/private/www_sonicstride_app.key:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./favicon.ico:/usr/share/nginx/html/favicon.ico:ro
     networks:
       - music-backend
     depends_on:
