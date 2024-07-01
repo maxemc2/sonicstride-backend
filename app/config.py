@@ -9,6 +9,6 @@ class Setting(BaseSettings):
     database_password: str
     database_port: str
 
-# path = os.getenv("../.env")
-# setting = Setting(_env_file=path, _env_file_encoding="utf-8")
-setting = Setting()
+path = os.getenv("../.env")
+setting = Setting(_env_file=path, _env_file_encoding="utf-8")
+# setting = Setting()

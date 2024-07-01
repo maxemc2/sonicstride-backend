@@ -34,7 +34,7 @@ MusicStream is a FastAPI application that allows users to select music from a dr
 
 3. Generate a self-signed certificate and private key:
     ```bash
-    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/www_sonicstride_app.key -out /etc/ssl/certs/www_sonicstride_app.crt
     ```
 
 4. Install Docker and Docker Compose:

@@ -5,6 +5,7 @@
 # Local data
 logs
 test_db
+audio_files/
 *.env
 *.crt
 *.key

@@ -7,9 +7,12 @@ from config import setting
 # Format the SQLAlchemy database URL
 SQLALCHEMY_DATABASE_URL = (
     f"postgresql://{setting.database_user}:{setting.database_password}"
-    f"@{setting.database_url}:5432/{setting.database_name}"
+    f"@{setting.database_url}:5432/postgres"
 )
-
+# SQLALCHEMY_DATABASE_URL = (
+#     f"postgresql://sonicstride:password123"
+#     f"@test-music-db:5432/music_library_db"
+# )
 # Create a SQLAlchemy engine instance which provides a source of connectivity to our database
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
